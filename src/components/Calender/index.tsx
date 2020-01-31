@@ -8,19 +8,29 @@ interface CalnderPropsOnChange {
   (date: Date | Date[]): void;
 }
 
+
+interface markingDate{
+  date: Date;
+  className?: string;
+  tileContentString?: string
+}
+
 interface CalnderProps{
   onChangeDate: CalnderPropsOnChange;
+  markingDates: markingDate[];
 }
 
 interface getTileContentFunc{
   onChangeDate: CalnderPropsOnChange;
 }
 
-const rokuyyobi = ['大安', '赤口', '先勝', '友引', '先負', '仏滅'];
-
+function dateCompare(day1:Date, day2:Date) {
+  console.log("dateCompare", day1.getFullYear() === day2.getFullYear() && day1.getMonth() === day2.getMonth() && day1.getDate() === day2.getDate());
+  return (day1.getFullYear() === day2.getFullYear() && day1.getMonth() === day2.getMonth() && day1.getDate() === day2.getDate());
+}
 
 export default function Calendar(props:CalnderProps) {
-  const  { onChangeDate } = props;
+  const  { onChangeDate, markingDates } = props;
 
   const RcCalendarProps = {
     onChange: (date: Date | Date[])=>{
@@ -34,27 +44,34 @@ export default function Calendar(props:CalnderProps) {
       if (args.view !== 'month') {
         return null;
       }
-      const day = args.date.getDate();
-      const month = args.date.getMonth();
+      const date = args.date;
 
-      console.log(args, day);
-
-      const index = (day + month) % 6;
-
-      return (
-          <p>{rokuyyobi[index]}</p>
-        );    
+      let index = 0;
+      while(index < markingDates.length){
+        const markingDate = markingDates[index];
+        if (markingDate.tileContentString && dateCompare(date, markingDate.date)){
+          return (
+            <p>{markingDates[index].tileContentString}</p>
+          );    
+        }
+        index++;
+      }
+      return null;
     },
     tileClassName: (args:any):any=>{
       // 月表示のときのみ
       if (args.view !== 'month') {
         return null;
       }
-      const day = args.date.getDate();
-      // const month = args.date.getMonth();
+      const date = args.date;
 
-      if (day % 4 === 0){
-        return "starday";
+      let index = 0;
+      while(index < markingDates.length){
+        const markingDate = markingDates[index];
+        if (markingDate.className && dateCompare(date, markingDate.date)){
+          return markingDate.className;    
+        }
+        index++;
       }
     }
   };
@@ -62,4 +79,8 @@ export default function Calendar(props:CalnderProps) {
   return (
     <RcCalendar {...RcCalendarProps} />
   );
+}
+
+Calendar.defaultProps = {
+  markingDates: []
 }
