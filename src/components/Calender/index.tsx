@@ -1,6 +1,7 @@
 import React from 'react';
 import RcCalendar from 'react-calendar';
-import StarIcon from '@material-ui/icons/Star';
+// import StarIcon from '@material-ui/icons/Star';
+import './Calender.css';
 
 // import locale from './locale';
 interface CalnderPropsOnChange {
@@ -14,6 +15,8 @@ interface CalnderProps{
 interface getTileContentFunc{
   onChangeDate: CalnderPropsOnChange;
 }
+
+const rokuyyobi = ['大安', '赤口', '先勝', '友引', '先負', '仏滅'];
 
 
 export default function Calendar(props:CalnderProps) {
@@ -32,15 +35,27 @@ export default function Calendar(props:CalnderProps) {
         return null;
       }
       const day = args.date.getDate();
+      const month = args.date.getMonth();
 
       console.log(args, day);
 
-      if (day % 5 === 0){
-        return (
-            <StarIcon />
-          );    
+      const index = (day + month) % 6;
+
+      return (
+          <p>{rokuyyobi[index]}</p>
+        );    
+    },
+    tileClassName: (args:any)=>{
+      // 月表示のときのみ
+      if (args.view !== 'month') {
+        return null;
       }
-      return null;
+      const day = args.date.getDate();
+      // const month = args.date.getMonth();
+
+      if (day % 4 === 0){
+        return "starday";
+      }
     }
   };
 

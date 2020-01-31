@@ -1,0 +1,19 @@
+.react-calendar{
+  width: 100%;
+}
+
+.react-calendar__tile abbr{
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  padding: 16px;
+}
+
+.starday abbr{
+  color: #eeeeee;
+  background: no-repeat center/100% url("./star-24px.svg");
+}
+
+.react-calendar__tile{
+  border-bottom: 1px solid #eeeeee !important;
+}
