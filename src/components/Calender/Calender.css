@@ -11,7 +11,7 @@
 
 .starday abbr{
   color: #eeeeee;
-  background: no-repeat center/100% url("./star-24px.svg");
+  background: no-repeat center/100% url("/media/star-24px.svg");
 }
 
 .react-calendar__tile{

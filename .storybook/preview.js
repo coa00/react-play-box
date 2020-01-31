@@ -26,6 +26,6 @@ addDecorator(
       },
     },
     inline: true,
-    source: false,
+    source: true,
   })
 );
