@@ -29,7 +29,7 @@ export default function Calendar(props:CalnderProps) {
         onChangeDate(date);
       }
     },
-    tileContent: (args:any)=>{
+    tileContent: (args:any):any=>{
       // 月表示のときのみ
       if (args.view !== 'month') {
         return null;
@@ -45,7 +45,7 @@ export default function Calendar(props:CalnderProps) {
           <p>{rokuyyobi[index]}</p>
         );    
     },
-    tileClassName: (args:any)=>{
+    tileClassName: (args:any):any=>{
       // 月表示のときのみ
       if (args.view !== 'month') {
         return null;
