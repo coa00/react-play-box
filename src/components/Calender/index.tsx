@@ -47,6 +47,7 @@ export default function Calendar(props:CalnderProps) {
       const date = args.date;
 
       let index = 0;
+
       while(index < markingDates.length){
         const markingDate = markingDates[index];
         if (markingDate.tileContentString && dateCompare(date, markingDate.date)){
@@ -81,6 +82,8 @@ export default function Calendar(props:CalnderProps) {
   );
 }
 
+
 Calendar.defaultProps = {
-  markingDates: []
+  markingDates: [],
+  onChangeDate: ()=>{}
 }

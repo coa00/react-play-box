@@ -27,6 +27,14 @@
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public"
   },
+  "babel": {
+    "presets": [
+      "react-app"
+    ],
+    "plugins": [
+      "babel-plugin-typescript-to-proptypes"
+    ]
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -45,6 +53,7 @@
   "devDependencies": {
     "@storybook/addon-actions": "^5.3.9",
     "@storybook/addon-info": "^5.3.9",
+    "@storybook/addon-knobs": "^5.3.10",
     "@storybook/addon-links": "^5.3.9",
     "@storybook/addons": "^5.3.9",
     "@storybook/preset-create-react-app": "^1.5.2",
@@ -52,6 +61,7 @@
     "@typescript-eslint/eslint-plugin": "2.x",
     "@typescript-eslint/parser": "2.x",
     "babel-eslint": "10.x",
+    "babel-plugin-typescript-to-proptypes": "^1.2.1",
     "eslint": "6.x",
     "eslint-config-react-app": "^5.2.0",
     "eslint-plugin-flowtype": "3.x",
